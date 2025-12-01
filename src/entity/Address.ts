@@ -1,15 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
-export class User {
+export class Address {
 
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
-    name: string
+    street: string
     
     @Column()
-    age: number
+    city: string
 
 }
