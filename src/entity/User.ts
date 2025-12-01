@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { Address } from "./Address"
 
 @Entity()
@@ -13,7 +13,7 @@ export class User {
     @Column()
     age: number
 
-    @ManyToMany(() => Address, address => address.users)
+    @OneToMany(() => Address, address => address.users)
     addresses: Address[]
 
 }
