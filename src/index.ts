@@ -6,6 +6,17 @@ import { Address } from "./entity/Address";
 const app = express();
 app.use(express.json());
 
+app.get("/users", async (req, res) => {
+  try {
+    const users = await AppDataSource.getRepository(User).find({
+      relations: ["addresses"],
+    });
+    return res.json(users);
+  } catch (err) {
+    return res.status(500).json({ error: "Erro ao buscar usuários" });
+  }
+});
+
 app.post("/create", async (req, res) => {
   const queryRunner = AppDataSource.createQueryRunner();
 
@@ -43,11 +54,11 @@ app.post("/create", async (req, res) => {
 
 AppDataSource.initialize()
   .then(() => {
-    console.log("📌 Banco conectado.");
+    console.log("Banco conectado.");
     app.listen(3000, () => {
-      console.log("🚀 Servidor rodando na porta 3000.");
+      console.log("Servidor rodando na porta 3000.");
     });
   })
   .catch((err) => {
-    console.error("❌ Erro ao inicializar o banco:", err);
+    console.error("Erro ao inicializar o banco:", err);
   });
