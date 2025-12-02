@@ -10,9 +10,9 @@ export const AppDataSource = new DataSource({
     username: "admin",
     password: "admin",
     database: "transaction_acid",
-    synchronize: true,
-    logging: false,
+    synchronize: false,
+    logging: true,
     entities: [User, Address],
-    migrations: [],
+    migrations: ["src/migrations/*.ts"],
     subscribers: [],
 })
