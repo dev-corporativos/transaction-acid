@@ -14,6 +14,6 @@ export class Address {
     city: string
 
     @ManyToOne(() => User, user => user.addresses)
-    users: User[]
+    user: User
 
 }

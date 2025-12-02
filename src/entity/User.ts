@@ -13,7 +13,7 @@ export class User {
     @Column()
     age: number
 
-    @OneToMany(() => Address, address => address.users)
+    @OneToMany(() => Address, address => address.user)
     addresses: Address[]
 
 }
