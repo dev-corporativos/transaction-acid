@@ -5,11 +5,11 @@ import { Address } from "./entity/Address"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
-    port: 5000,
-    username: "admin",
-    password: "admin",
-    database: "transaction_acid",
+    host: process.env.DB_HOST || "localhost",
+    port: 5432,
+    username: process.env.DB_USER || "admin",
+    password: process.env.DB_PASSWORD || "admin",
+    database: process.env.DB_NAME || "transaction_acid",
     synchronize: false,
     logging: true,
     entities: [User, Address],
