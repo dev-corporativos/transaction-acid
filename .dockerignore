@@ -1,22 +1,8 @@
 node_modules
 npm-debug.log
 
-dist
-build
-
-.env
-.env.local
-*.log
-
-.vscode
-.idea
-*.swp
+Dockerfile
+.dockerignore
 
 .git
 .gitignore
-
-.DS_Store
-Thumbs.db
-
-Dockerfile
-docker-compose.yaml
