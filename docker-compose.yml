@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   db:
     image: postgres:17.4-alpine3.20
@@ -6,16 +8,38 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: transaction_acid
     ports:
-      - "5000:5432"
+      - "5000:5432" 
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
+      - postgres_data:/var/lib/postgresql/data  
+    networks:
+      - app-network
   adminer:
     image: adminer:latest
     ports:
-      - "8080:8080"
+      - "8080:8080"  
     depends_on:
-      - db
+      - db  
+    networks:
+      - app-network
+
+  app:
+    build: .
+    command: sh -c "npm run migration:run && npm start"  
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - db  
+    environment:
+      DB_HOST: db  
+      DB_USER: admin
+      DB_PASSWORD: admin
+      DB_NAME: transaction_acid
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres_data:
