@@ -13,7 +13,8 @@
       "express": "^5.2.1",
       "pg": "^8.14.1",
       "reflect-metadata": "^0.2.2",
-      "typeorm": "0.3.27"
+      "typeorm": "0.3.27",
+      "wait-port": "^1.1.0"
    },
    "scripts": {
       "start": "ts-node src/index.ts",
